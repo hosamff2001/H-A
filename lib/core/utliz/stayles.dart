@@ -15,4 +15,6 @@ abstract class Styles {
 
   static final textStyle16 =
       GoogleFonts.amiri(fontSize: 16, fontWeight: FontWeight.w600);
+      static final textStyle34 =
+      GoogleFonts.amiri(fontSize: 34, fontWeight: FontWeight.w600);
 }

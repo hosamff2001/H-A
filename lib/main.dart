@@ -1,9 +1,14 @@
+import 'package:ecommerce/core/utliz/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'core/resources/theme_manager.dart';
+import 'core/utliz/cashmemory.dart';
+import 'features/splash/view/splashscreen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  CashHelper.init();
   runApp(const MyApp());
 }
 
@@ -13,28 +18,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-     return GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'H&A',
       theme: getApplicationTheme(),
-      home: const MyHomePage(),
+      home: const SplashScreen(),
+      routes: routes,
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Demo Home Page'),
-      ),
-      body: const Center(
-        child: Text(
-          'You have pushed the button this many times:',
-        ),
-      ),);
   }
 }

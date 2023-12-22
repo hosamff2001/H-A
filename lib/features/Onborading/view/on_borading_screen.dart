@@ -1,8 +1,9 @@
-
+import 'package:ecommerce/features/Onborading/view/widgets/on_borading_appbar.dart';
+import 'package:ecommerce/features/Onborading/view/widgets/on_borading_body.dart';
+import 'package:ecommerce/features/Onborading/view/widgets/on_borading_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-
+import '../data/onborading_model.dart';
 
 class OnBordingScreen extends StatelessWidget {
   OnBordingScreen({super.key});
@@ -11,42 +12,38 @@ class OnBordingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-    
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          children: [
-           
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
+    return SafeArea(
+      child: Scaffold(
+        body: PageView.builder(
+          itemCount: onBradingModel.length,
+          controller: bordingcontroller,
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemBuilder: (context, index) => Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                opacity: 0.5,
+                image: AssetImage(onBradingModel[index].image),
+                fit: BoxFit.cover,
+              ),
             ),
-            Row(
+            child: Column(
               children: [
-                SmoothPageIndicator(
-                    controller: bordingcontroller,
-                    effect: const ExpandingDotsEffect(
-                        dotColor: Colors.grey,
-                        dotHeight: 10,
-                        activeDotColor: Colors.pinkAccent,
-                        dotWidth: 10,
-                        spacing: 5),
-                    count: 3),
-                const Spacer(),
-                FloatingActionButton(
-                  onPressed: () {
-                    
-                  },
-                  child: const Icon(Icons.arrow_forward_ios),
-                )
+                OnBoradingAppBar(index: index),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.07,
+                ),
+                Spacer(),
+                Expanded(child: OnBradingBody(index: index)),
+                Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: OnBoradingBottomBar(
+                        bordingcontroller: bordingcontroller, index: index)),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.07,
+                ),
               ],
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.07,
-            ),
-          ],
+          ),
         ),
       ),
     );

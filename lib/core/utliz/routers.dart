@@ -19,3 +19,16 @@
 //     ],
 //   );
 // }
+
+
+import 'package:flutter/material.dart';
+
+import '../../features/auth/presentation/view/login_screen.dart';
+
+class AppRoutes {
+  static const String login = '/login';
+}
+
+Map<String, Widget Function(BuildContext)> routes = {
+  AppRoutes.login: (context) => const LoginScreen(),
+};
